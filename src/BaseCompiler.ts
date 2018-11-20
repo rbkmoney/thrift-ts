@@ -409,32 +409,7 @@ export default class BaseCompiler {
     }
 
     writeCommonType() {
-        if (this.int64AsString) {
-            this.wIntend();
-            this.write(
-                "type",
-                SPACE,
-                "Int64",
-                SPACE,
-                "=",
-                SPACE,
-                "string;",
-                "\n"
-            );
-        } else {
-            this.wIntend();
-            this.write("interface Int64 {");
-            this.increaseIntend();
-            this.wIntend();
-            this.write("constructor(o?: number | string): this;", "\n");
-            this.wIntend();
-            this.write("toString(): string;", "\n");
-            this.wIntend();
-            this.write("toJson(): string;");
-            this.decreaseIntend();
-            this.wIntend();
-            this.write("}\n\n");
-        }
+        this.write(`\nimport Int64 from 'thrift-ts/lib/int64';\n\n`);
     }
 
     wPromise(type: ValueType) {
